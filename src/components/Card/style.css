@@ -1,6 +1,4 @@
-import styled from "styled-components";
-
-export const CardWrapper = styled.div`
+.card {
   padding: 8px;
   display: flex;
   flex-direction: column;
@@ -11,21 +9,19 @@ export const CardWrapper = styled.div`
   height: 100px;
   margin: 4px auto;
   background: #ffffffe3;
-`;
+}
 
-export const CardTitle = styled.label`
+.card__title {
   margin-right: auto;
-`;
+}
 
-export const CardIcon = styled.img`
+.card__icon {
   width: 18px;
   height: 18px;
   cursor: pointer;
-`;
+}
 
-export const CardBody = styled.div``;
-
-export const CardHeaderWrapper = styled.div`
+.card__header {
   display: flex;
   flex-direction: row;
-`;
+}

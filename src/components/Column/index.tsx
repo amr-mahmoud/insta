@@ -1,16 +1,10 @@
-import {
-  ColumnBody,
-  ColumnWrapper,
-  ColumnTitle,
-  ColumnHeader,
-  ColumnIcon,
-} from "./Column.style";
 import { addIcon, deleteIcon, editIcon } from "../../assets/images";
 import { Modal } from "../Modal";
 import { useState } from "react";
 import { ColumnProps } from "./model";
 import { actionType } from "../../reducer/actions";
 import Card from "../Card";
+import "./style.css";
 
 const Column = (props: ColumnProps) => {
   const [modalDisplay, setModalDisplay] = useState(false);
@@ -48,7 +42,7 @@ const Column = (props: ColumnProps) => {
   };
 
   return (
-    <ColumnWrapper>
+    <div className="column">
       {modalDisplay && (
         <Modal cancel={cancelModal} title={"Add Card"} submit={submitAddCard} />
       )}
@@ -60,19 +54,34 @@ const Column = (props: ColumnProps) => {
           defaultValue={column.name}
         />
       )}
-      <ColumnHeader>
-        <ColumnTitle>{name}</ColumnTitle>
-        <ColumnIcon src={deleteIcon} onClick={() => handleDeleteColumn()} />
-        <ColumnIcon src={addIcon} onClick={() => setModalDisplay(true)} />
-        <ColumnIcon src={editIcon} onClick={() => setEditModalDisplay(true)} />
-      </ColumnHeader>
-      <ColumnBody>
+      <div className="column__header">
+        <label className="column__title">{name}</label>
+        <img
+          alt=""
+          className="column__icon"
+          src={deleteIcon}
+          onClick={() => handleDeleteColumn()}
+        />
+        <img
+          alt=""
+          className="column__icon"
+          src={addIcon}
+          onClick={() => setModalDisplay(true)}
+        />
+        <img
+          alt=""
+          className="column__icon"
+          src={editIcon}
+          onClick={() => setEditModalDisplay(true)}
+        />
+      </div>
+      <div className="column__body">
         {cards?.length > 0 &&
           cards.map((card) => (
             <Card key={card.id} dispatch={dispatch} card={card} columnId={id} />
           ))}
-      </ColumnBody>
-    </ColumnWrapper>
+      </div>
+    </div>
   );
 };
 

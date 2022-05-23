@@ -1,15 +1,7 @@
 import { useCallback, useContext, useState } from "react";
-import {
-  SelectContainer,
-  SelectListWrapper,
-  SelectHeader,
-  SelectList,
-  SelectItem,
-  Wrapper,
-  SelectTitle,
-} from "./Select.style";
 import { SelectProps } from "./Select";
 import { AppContext } from "../../provider";
+import "./style.css";
 
 const Select = (props: SelectProps) => {
   const [visible, setVisible] = useState(false);
@@ -28,28 +20,29 @@ const Select = (props: SelectProps) => {
   }, [select, columns])();
 
   return (
-    <Wrapper>
-      <SelectTitle>{title}</SelectTitle>
-      <SelectContainer>
-        <SelectHeader onClick={() => setVisible(!visible)}>
+    <div className="select">
+      <label className="select__title">{title}</label>
+      <div className="select__container">
+        <div className="select__header" onClick={() => setVisible(!visible)}>
           {selectedName}
-        </SelectHeader>
+        </div>
         {visible && (
-          <SelectListWrapper>
-            <SelectList>
+          <div className="select__wrapper">
+            <ul className="select__list">
               {columns.map((item) => (
-                <SelectItem
+                <li
+                  className="select__item"
                   key={item.id}
                   onClick={() => onSelectItemClickHandler(item.id)}
                 >
                   {item.name}
-                </SelectItem>
+                </li>
               ))}
-            </SelectList>
-          </SelectListWrapper>
+            </ul>
+          </div>
         )}
-      </SelectContainer>
-    </Wrapper>
+      </div>
+    </div>
   );
 };
 

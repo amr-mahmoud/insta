@@ -1,14 +1,9 @@
 import React, { useEffect, useContext, useState } from "react";
-import {
-  ContentWrapper,
-  ContentHeader,
-  AddColumnButton,
-  ColumnsListWrapper,
-} from "./Content.style";
 import { AppContext } from "../../provider";
 import { actionType } from "../../reducer/actions";
 import Column from "../Column";
 import { Modal } from "../Modal";
+import "./style.css";
 
 const Content: React.FC = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -16,7 +11,7 @@ const Content: React.FC = () => {
 
   useEffect(() => {
     dispatch({ type: actionType.SET_COLUMNS });
-  }, []);
+  }, [dispatch]);
 
   const { columns } = state || {};
 
@@ -31,8 +26,9 @@ const Content: React.FC = () => {
     dispatch({ type: actionType.ADD_NEW_COLUMN, payload: input });
     setAddModalDisplay(false);
   };
+
   return (
-    <ContentWrapper>
+    <main className="content">
       {addModalDisplay && (
         <Modal
           cancel={cancelModal}
@@ -40,18 +36,21 @@ const Content: React.FC = () => {
           title={"Add Column"}
         />
       )}
-      <ContentHeader>
-        <AddColumnButton onClick={() => addColumnHeaderHander()}>
+      <div className="content_header">
+        <button
+          className="content__button--add"
+          onClick={() => addColumnHeaderHander()}
+        >
           Add Column
-        </AddColumnButton>
-      </ContentHeader>
-      <ColumnsListWrapper>
+        </button>
+      </div>
+      <div className="column__list">
         {columns &&
           columns.map((column) => (
             <Column key={column.id} column={column} dispatch={dispatch} />
           ))}
-      </ColumnsListWrapper>
-    </ContentWrapper>
+      </div>
+    </main>
   );
 };
 

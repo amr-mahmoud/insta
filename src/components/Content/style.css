@@ -1,6 +1,4 @@
-import styled from "styled-components";
-
-export const ContentWrapper = styled.main`
+.content {
   flex: 1;
   width: 90%;
   padding-top: 10px;
@@ -8,26 +6,22 @@ export const ContentWrapper = styled.main`
   margin: auto;
   display: flex;
   flex-direction: column;
-`;
+}
 
-
-export const ColumnsListWrapper = styled.div`
+.column__list {
   flex: 1;
   display: flex;
   flex-direction: row;
   padding: 10px;
-`;
+}
 
-
-
-
-export const ContentHeader = styled.div`
+.content__header {
   display: flex;
   width: 100%;
   height: 25px;
-`;
+}
 
-export const AddColumnButton = styled.button`
+.content__button--add {
   height: 20px;
   width: 30;
-`;
+}

@@ -1,12 +1,12 @@
 import React from "react";
-import { Header, Title } from "./Home.style";
 import Content from "../Content";
+import "./style.css";
 
 const Home: React.FC = () => (
   <>
-    <Header>
-      <Title>instaPro</Title>
-    </Header>
+    <div className="home__header">
+      <label className="home__title">instaPro</label>
+    </div>
     <Content />
   </>
 );

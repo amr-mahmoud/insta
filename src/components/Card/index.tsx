@@ -1,16 +1,9 @@
-import {
-  CardWrapper,
-  CardBody,
-  CardHeaderWrapper,
-  CardIcon,
-  CardTitle,
-} from "./Card.style";
 import { editIcon, deleteIcon } from "../../assets/images";
 import { CardProps } from "./model";
 import { useState } from "react";
 import { EditCardModal } from "../EditCardModal";
 import { actionType } from "../../reducer/actions";
-
+import "./style.css";
 const Card = (props: CardProps) => {
   const [modalDisplay, setModalDisplay] = useState(false);
 
@@ -45,7 +38,7 @@ const Card = (props: CardProps) => {
     });
   };
   return (
-    <CardWrapper>
+    <div className="card">
       {modalDisplay && (
         <EditCardModal
           cancel={cancelModal}
@@ -55,13 +48,23 @@ const Card = (props: CardProps) => {
           cardName={name}
         ></EditCardModal>
       )}
-      <CardHeaderWrapper>
-        <CardTitle>{name}</CardTitle>
-        <CardIcon src={editIcon} onClick={() => setModalDisplay(true)} />
-        <CardIcon src={deleteIcon} onClick={() => deleteCard()} />
-      </CardHeaderWrapper>
-      <CardBody></CardBody>
-    </CardWrapper>
+      <div className="card__header">
+        <label className="card__title">{name}</label>
+        <img
+          alt=""
+          className="card__icon"
+          src={editIcon}
+          onClick={() => setModalDisplay(true)}
+        />
+        <img
+          alt=""
+          className="card__icon"
+          src={deleteIcon}
+          onClick={() => deleteCard()}
+        />
+      </div>
+      <div></div>
+    </div>
   );
 };
 
